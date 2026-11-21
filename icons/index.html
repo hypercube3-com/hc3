@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hypercube3 - a personal dashboard of useful web links.">
+  <meta name="theme-color" content="#15263b">
+  <title>hypercube3.com - Quick Links</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #f3f6fa;
+      --surface: #ffffff;
+      --text: #172638;
+      --muted: #5d6d80;
+      --border: #dce4ed;
+      --accent: #1763bd;
+      --shadow: 0 8px 30px rgba(18, 43, 70, .06);
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .container { width: min(1050px, calc(100% - 32px)); margin: 0 auto; }
+    .site-header {
+      background: #15263b;
+      color: #fff;
+      padding: 34px 0 30px;
+      text-align: center;
+    }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.65rem); letter-spacing: -.04em; }
+    .subtitle { margin: 6px 0 0; color: #c9d6e4; }
+    main { padding: 32px 0 40px; }
+    .section-title { margin: 0 0 16px; font-size: 1.2rem; }
+    .links {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .tile {
+      min-width: 0;
+      min-height: 175px;
+      padding: 20px 12px 17px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 650;
+      text-align: center;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .tile:hover { transform: translateY(-3px); border-color: #98b9de; box-shadow: 0 12px 28px rgba(18,43,70,.1); }
+    .tile:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #79b7ff; outline-offset: 3px; }
+    .tile img { height: 100px; width: 100px; object-fit: contain; }
+    .tile .fallback-icon { display: none; font-size: 3.4rem; line-height: 100px; height: 100px; }
+    .tile.missing-icon img { display: none; }
+    .tile.missing-icon .fallback-icon { display: block; }
+    .tile-label { font-size: .98rem; }
+    .network-panel {
+      margin-top: 32px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+    .network-panel h2 { margin: 0 0 6px; font-size: 1.2rem; }
+    .description, .privacy-note { color: var(--muted); font-size: .9rem; }
+    .description { margin: 0 0 16px; }
+    button {
+      appearance: none;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    button:hover { background: #0e4d99; }
+    button:disabled { opacity: .65; cursor: wait; }
+    #network-status { margin: 12px 0 0; color: var(--muted); }
+    .network-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      margin: 18px 0 0;
+    }
+    .network-results > div { min-width: 0; padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .network-results dt { font-size: .85rem; color: var(--muted); }
+    .network-results dd { margin: 2px 0 0; overflow-wrap: anywhere; font-weight: 600; }
+    .network-results a { color: var(--accent); }
+    .privacy-note { margin: 16px 0 0; }
+    footer { text-align: center; padding: 0 16px 30px; color: var(--muted); font-size: .85rem; }
+    @media (max-width: 720px) {
+      .links { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .tile { min-height: 145px; }
+      .tile img, .tile .fallback-icon { width: 76px; height: 76px; line-height: 76px; }
+      .tile .fallback-icon { font-size: 2.6rem; }
+    }
+    @media (max-width: 470px) {
+      .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .network-results { grid-template-columns: 1fr; }
+      .network-panel { padding: 19px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tile { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>hypercube3.com</h1>
+      <p class="subtitle">Quick links</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav aria-label="Favourite websites">
+      <h2 class="section-title">Favourite websites</h2>
+      <div class="links">
+        <!-- Keep the icons/ folder alongside this index.html when deploying to GitHub Pages. -->
+        <a class="tile" href="https://google.com" target="_blank" rel="noopener noreferrer">
+          <img src="icons/google-search.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">🔎</span><span class="tile-label">Google Search</span>
+        </a>
+        <a class="tile" href="https://www.google.com/search?q=weather+north+wahroonga" target="_blank" rel="noopener noreferrer">
+          <img src="icons/weather.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">☀️</span><span class="tile-label">Weather - North Wahroonga</span>
+        </a>
+        <a class="tile" href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+          <img src="icons/google-maps.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">🗺️</span><span class="tile-label">Google Maps</span>
+        </a>
+        <a class="tile" href="https://mail.google.com/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/gmail.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">✉️</span><span class="tile-label">Gmail</span>
+        </a>
+        <a class="tile" href="https://contacts.google.com/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/google-contacts.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">👤</span><span class="tile-label">Google Contacts</span>
+        </a>
+        <a class="tile" href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/google-calendar.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">📅</span><span class="tile-label">Google Calendar</span>
+        </a>
+        <a class="tile" href="https://keep.google.com/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/google-keep.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">📝</span><span class="tile-label">Google Keep</span>
+        </a>
+        <a class="tile" href="https://www.speedtest.net/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/speedtest.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">⚡</span><span class="tile-label">Speedtest</span>
+        </a>
+        <a class="tile" href="https://youtube.com/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/youtube.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">▶️</span><span class="tile-label">YouTube</span>
+        </a>
+        <a class="tile" href="https://amazon.com.au/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/amazon.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">📦</span><span class="tile-label">Amazon Australia</span>
+        </a>
+        <a class="tile" href="https://imdb.com/" target="_blank" rel="noopener noreferrer">
+          <img src="icons/imdb.png" alt="" width="100" height="100">
+          <span class="fallback-icon" aria-hidden="true">🎬</span><span class="tile-label">IMDb</span>
+        </a>
+      </div>
+    </nav>
+
+    <section class="network-panel" aria-labelledby="network-heading">
+      <h2 id="network-heading">Network information</h2>
+      <p class="description">See your public IP address and approximate location, as on the original PHP page.</p>
+      <button id="lookup-button" type="button">Show my network information</button>
+      <p id="network-status" role="status" aria-live="polite"></p>
+      <dl id="network-results" class="network-results" hidden>
+        <div><dt>Public IP</dt><dd id="result-ip"></dd></div>
+        <div><dt>Country</dt><dd id="result-country"></dd></div>
+        <div><dt>City</dt><dd id="result-city"></dd></div>
+        <div><dt>Continent</dt><dd id="result-continent"></dd></div>
+        <div><dt>Timezone</dt><dd id="result-timezone"></dd></div>
+        <div><dt>Approximate coordinates</dt><dd><a id="result-map" target="_blank" rel="noopener noreferrer">View on Google Maps</a></dd></div>
+      </dl>
+      <p class="privacy-note">The lookup is optional. If selected, your browser contacts <a href="https://ipwho.is/" target="_blank" rel="noopener noreferrer">ipwho.is</a> to identify your public IP and approximate location. Location data may be imprecise, particularly with a VPN.</p>
+    </section>
+  </main>
+
+  <footer>hypercube3.com</footer>
+
+  <script>
+    // Show a fallback symbol if an image from icons/ is missing.
+    document.querySelectorAll('.tile img').forEach((img) => {
+      img.addEventListener('error', () => img.closest('.tile').classList.add('missing-icon'));
+      if (img.complete && img.naturalWidth === 0) {
+        img.closest('.tile').classList.add('missing-icon');
+      }
+    });
+
+    // A static site cannot read the visitor's IP using PHP. This optional,
+    // client-side request replaces the old geoplugin lookup.
+    const button = document.getElementById('lookup-button');
+    const status = document.getElementById('network-status');
+    const results = document.getElementById('network-results');
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      status.textContent = 'Looking up network information…';
+      results.hidden = true;
+      try {
+        const response = await fetch('https://ipwho.is/', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Lookup service unavailable');
+        const data = await response.json();
+        if (!data.success) throw new Error('Lookup unsuccessful');
+
+        const display = (id, value) => {
+          document.getElementById(id).textContent = value || 'Not available';
+        };
+        display('result-ip', data.ip);
+        display('result-country', data.country);
+        display('result-city', data.city);
+        display('result-continent', data.continent);
+        display('result-timezone', data.timezone && data.timezone.id);
+
+        const map = document.getElementById('result-map');
+        const lat = Number(data.latitude);
+        const lon = Number(data.longitude);
+        if (Number.isFinite(lat) && Number.isFinite(lon) &&
+            lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+          map.href = 'https://www.google.com/maps?q=' + encodeURIComponent(lat + ',' + lon);
+          map.textContent = lat.toFixed(4) + ', ' + lon.toFixed(4) + ' (Google Maps)';
+        } else {
+          map.removeAttribute('href');
+          map.textContent = 'Not available';
+        }
+        results.hidden = false;
+        status.textContent = 'Network information loaded.';
+      } catch (error) {
+        status.textContent = 'Unable to retrieve network information right now. Your shortcuts still work.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
